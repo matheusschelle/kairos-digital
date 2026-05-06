@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Acesso à Mentoria Flash — Kairos Digital</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Syne:wght@400;700;800&display=swap');
+  :root {
+    --bg: #05060c;
+    --surface: #0d0f1a;
+    --border: #1a1d2e;
+    --accent: #6366f1;
+    --accent2: #a855f7;
+    --text: #e2e8f0;
+    --muted: #64748b;
+    --success: #10b981;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Space Grotesk', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 20px;
+    background-image: radial-gradient(ellipse at 20% 20%, rgba(99,102,241,0.08) 0%, transparent 60%),
+                      radial-gradient(ellipse at 80% 80%, rgba(168,85,247,0.06) 0%, transparent 60%);
+  }
+  .container { max-width: 520px; width: 100%; }
+  .header { text-align: center; margin-bottom: 40px; animation: fadeDown 0.6s ease; }
+  .badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(99,102,241,0.1); border: 1px solid rgba(99,102,241,0.3);
+    border-radius: 100px; padding: 6px 16px;
+    font-size: 11px; font-weight: 600; letter-spacing: 3px;
+    color: var(--accent); text-transform: uppercase; margin-bottom: 24px;
+  }
+  .badge::before { content: '⚔'; }
+  h1 {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(32px, 6vw, 48px);
+    font-weight: 800; line-height: 1.1; margin-bottom: 12px;
+    background: linear-gradient(135deg, #e2e8f0 30%, #a855f7);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  }
+  .subtitle { color: var(--muted); font-size: 15px; line-height: 1.6; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 20px; padding: 36px;
+    animation: fadeUp 0.6s ease 0.1s both;
+  }
+  .welcome-bar {
+    background: linear-gradient(135deg, rgba(99,102,241,0.15), rgba(168,85,247,0.15));
+    border: 1px solid rgba(99,102,241,0.2);
+    border-radius: 12px; padding: 16px 20px;
+    margin-bottom: 28px;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .welcome-bar .icon { font-size: 28px; }
+  .welcome-bar p { font-size: 13px; color: var(--text); line-height: 1.5; }
+  .welcome-bar strong { color: var(--accent); }
+  .field { margin-bottom: 20px; }
+  label { display: block; font-size: 13px; font-weight: 500; color: var(--text); margin-bottom: 8px; }
+  label span { color: var(--accent); }
+  input {
+    width: 100%; background: var(--bg);
+    border: 1px solid var(--border); border-radius: 10px;
+    padding: 13px 16px; color: var(--text);
+    font-family: 'Space Grotesk', sans-serif; font-size: 14px;
+    transition: border-color 0.2s, box-shadow 0.2s; outline: none;
+  }
+  input:focus {
+    border-color: var(--accent);
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.15);
+  }
+  .divider {
+    height: 1px; background: var(--border);
+    margin: 24px 0; position: relative;
+  }
+  .divider span {
+    position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+    background: var(--surface); padding: 0 12px;
+    font-size: 11px; color: var(--muted); letter-spacing: 2px;
+  }
+  .produto-label {
+    font-size: 12px; font-weight: 600; letter-spacing: 2px;
+    text-transform: uppercase; color: var(--muted); margin-bottom: 12px;
+    display: block;
+  }
+  .produto-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: rgba(16,185,129,0.1); border: 1px solid rgba(16,185,129,0.3);
+    border-radius: 100px; padding: 8px 18px;
+    font-size: 13px; font-weight: 600; color: var(--success);
+  }
+  .produto-badge::before { content: '✓'; }
+  .submit-btn {
+    width: 100%; padding: 16px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border: none; border-radius: 12px; color: white;
+    font-family: 'Syne', sans-serif; font-size: 14px;
+    font-weight: 700; letter-spacing: 1.5px; cursor: pointer;
+    transition: all 0.3s; margin-top: 24px;
+  }
+  .submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+  }
+  .submit-btn:disabled { opacity: 0.6; cursor: not-allowed; transform: none; }
+  .terms {
+    font-size: 11px; color: var(--muted);
+    text-align: center; margin-top: 16px; line-height: 1.6;
+  }
+  .success-screen {
+    display: none; text-align: center; padding: 40px 20px;
+    animation: fadeUp 0.5s ease;
+  }
+  .success-icon { font-size: 56px; margin-bottom: 20px; }
+  .success-screen h2 {
+    font-family: 'Syne', sans-serif; font-size: 26px;
+    font-weight: 800; margin-bottom: 12px; color: var(--success);
+  }
+  .success-screen p { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 8px; }
+  .access-btn {
+    display: inline-block; margin-top: 24px; padding: 14px 32px;
+    background: linear-gradient(135deg, var(--accent), var(--accent2));
+    border-radius: 12px; color: white; text-decoration: none;
+    font-family: 'Syne', sans-serif; font-size: 14px; font-weight: 700;
+    letter-spacing: 1px; transition: all 0.3s;
+  }
+  .access-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(99,102,241,0.4);
+  }
+  @keyframes fadeDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="header">
+    <div class="badge">Kairos Digital</div>
+    <h1>Bem-vindo à<br>Mentoria Flash ⚡</h1>
+    <p class="subtitle">Preencha os dados abaixo para liberar seu acesso completo ao material.</p>
+  </div>
+
+  <div class="card">
+    <div id="formSection">
+      <div class="welcome-bar">
+        <div class="icon">🎯</div>
+        <p>Em <strong>7 dias intensivos</strong> você vai dominar IA e construir seus primeiros agentes do zero ao primeiro cliente.</p>
+      </div>
+
+      <form id="acessoForm">
+        <div class="field">
+          <label>Nome completo <span>*</span></label>
+          <input type="text" name="nome" placeholder="Seu nome completo" required>
+        </div>
+        <div class="field">
+          <label>WhatsApp <span>*</span></label>
+          <input type="tel" name="whatsapp" placeholder="(62) 99999-9999" required>
+        </div>
+        <div class="field">
+          <label>Email <span>*</span></label>
+          <input type="email" name="email" placeholder="seuemail@gmail.com" required>
+        </div>
+
+        <div class="divider"><span>PRODUTO</span></div>
+
+        <span class="produto-label">Você adquiriu</span>
+        <div class="produto-badge">Mentoria Flash — 7 Dias</div>
+        <input type="hidden" name="produto" value="Mentoria Flash">
+        <input type="hidden" name="tipo" value="aluno">
+
+        <button type="submit" class="submit-btn" id="submitBtn">
+          LIBERAR MEU ACESSO →
+        </button>
+        <p class="terms">Ao confirmar, você concorda em receber comunicações da Kairos Digital via WhatsApp e email.</p>
+      </form>
+    </div>
+
+    <div class="success-screen" id="successScreen">
+      <div class="success-icon">⚔️</div>
+      <h2>Acesso liberado!</h2>
+      <p>Seus dados foram confirmados com sucesso.</p>
+      <p>Você já pode acessar todo o material da <strong style="color:var(--accent)">Mentoria Flash</strong> agora.</p>
+      <a href="https://mentoria-flash-kairos.vercel.app/boas-vindas" class="access-btn">
+        ACESSAR A MENTORIA →
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.getElementById('acessoForm').addEventListener('submit', async function(e) {
+  e.preventDefault();
+  const btn = document.getElementById('submitBtn');
+  btn.disabled = true;
+  btn.textContent = 'LIBERANDO ACESSO...';
+
+  const data = new FormData(this);
+  const payload = {
+    nome: data.get('nome'),
+    whatsapp: data.get('whatsapp'),
+    email: data.get('email'),
+    produto: data.get('produto'),
+    tipo: data.get('tipo')
+  };
+
+  try {
+    await fetch('https://formspree.io/f/xeenzebp', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+    document.getElementById('formSection').style.display = 'none';
+    document.getElementById('successScreen').style.display = 'block';
+  } catch(err) {
+    btn.disabled = false;
+    btn.textContent = 'LIBERAR MEU ACESSO →';
+    alert('Erro ao enviar. Tente novamente.');
+  }
+});
+</script>
+</body>
+</html>

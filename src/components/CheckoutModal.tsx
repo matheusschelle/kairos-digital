@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from 'react';
 import { buildPixPayload, pixQrUrl } from '@/lib/pix';
 
-const PIX_KEY  = process.env.NEXT_PUBLIC_PIX_KEY  ?? 'upmatheusschelle@gmail.com';
+const PIX_KEY  = process.env.NEXT_PUBLIC_PIX_KEY  ?? 'af24e093-aa30-4f99-8633-d988fce174cc';
 const PIX_NAME = process.env.NEXT_PUBLIC_PIX_NAME ?? 'KAIROS DIGITAL';
 const PIX_CITY = 'GOIANIA';
 

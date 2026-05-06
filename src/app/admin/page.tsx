@@ -314,7 +314,7 @@ function StatusBadge({ status }: { status: string }) {
 }
 
 function ConfigSection() {
-  const pixKey  = process.env.NEXT_PUBLIC_PIX_KEY  ?? 'upmatheusschelle@gmail.com';
+  const pixKey  = process.env.NEXT_PUBLIC_PIX_KEY  ?? 'af24e093-aa30-4f99-8633-d988fce174cc';
   const pixName = process.env.NEXT_PUBLIC_PIX_NAME ?? 'KAIROS DIGITAL';
 
   const CONFIG_ITEMS = [
