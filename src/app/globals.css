@@ -1,0 +1,317 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --grid: rgba(155, 107, 255, 0.06);
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+html,
+body {
+  background: #05060c;
+  color: #f5f7fb;
+  min-height: 100vh;
+  /* No overflow-x here — `hidden` would break descendant `position: sticky`,
+   * and our content doesn't extend past the viewport horizontally. */
+}
+
+/* FIX 4 — Hide native cursor on every element so the custom AI orb is the only cursor. */
+*,
+*::before,
+*::after {
+  cursor: none !important;
+}
+
+/* FIX 3 — never let a section default to min-height: 100vh and create blank gaps. */
+section {
+  min-height: unset;
+}
+
+/* Lenis smooth scroll setup */
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* === Premium typography utility === */
+.font-display {
+  font-family: var(--font-display), system-ui, sans-serif;
+  letter-spacing: 0.04em;
+}
+
+.silver-gradient {
+  background: linear-gradient(
+    180deg,
+    #f5f7fb 0%,
+    #c8cee0 35%,
+    #8b91a8 60%,
+    #f5f7fb 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.neon-gradient {
+  background: linear-gradient(
+    90deg,
+    #7cf2ff 0%,
+    #3aa6ff 30%,
+    #9b6bff 65%,
+    #ff5cd1 100%
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+}
+
+.text-shimmer {
+  background: linear-gradient(
+    110deg,
+    rgba(255, 255, 255, 0.15) 30%,
+    rgba(255, 255, 255, 0.95) 50%,
+    rgba(255, 255, 255, 0.15) 70%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: shimmer 3s linear infinite;
+}
+
+/* === Glassmorphism panels === */
+.glass {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.06) 0%,
+    rgba(255, 255, 255, 0.02) 100%
+  );
+  backdrop-filter: blur(18px) saturate(140%);
+  -webkit-backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.08),
+    0 20px 60px -20px rgba(0, 0, 0, 0.6),
+    0 0 0 1px rgba(155, 107, 255, 0.04);
+}
+
+.glass-strong {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.09) 0%,
+    rgba(20, 22, 40, 0.45) 100%
+  );
+  backdrop-filter: blur(28px) saturate(180%);
+  -webkit-backdrop-filter: blur(28px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 30px 80px -20px rgba(0, 0, 0, 0.7);
+}
+
+.glow-edge {
+  position: relative;
+  overflow: hidden;
+}
+
+.glow-edge::before {
+  content: '';
+  position: absolute;
+  inset: -1px;
+  border-radius: inherit;
+  padding: 1px;
+  background: linear-gradient(
+    135deg,
+    rgba(124, 242, 255, 0.5),
+    rgba(155, 107, 255, 0.4) 50%,
+    rgba(255, 92, 209, 0.3)
+  );
+  -webkit-mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  mask:
+    linear-gradient(#000 0 0) content-box,
+    linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  pointer-events: none;
+  opacity: 0.6;
+  transition: opacity 0.4s ease;
+}
+
+.glow-edge:hover::before {
+  opacity: 1;
+}
+
+/* === Neon button === */
+.btn-neon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.6rem;
+  padding: 0.95rem 1.7rem;
+  border-radius: 999px;
+  font-family: var(--font-display), system-ui, sans-serif;
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  background: linear-gradient(
+    135deg,
+    rgba(58, 166, 255, 0.16) 0%,
+    rgba(155, 107, 255, 0.18) 50%,
+    rgba(255, 92, 209, 0.16) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  color: #f5f7fb;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.1),
+    0 10px 40px -10px rgba(155, 107, 255, 0.4);
+}
+
+.btn-neon:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.35);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.18),
+    0 18px 60px -10px rgba(155, 107, 255, 0.65),
+    0 0 30px rgba(124, 242, 255, 0.4);
+}
+
+.btn-neon-solid {
+  background: linear-gradient(135deg, #3aa6ff 0%, #9b6bff 50%, #ff5cd1 100%);
+  border: none;
+  color: #fff;
+}
+
+.btn-neon-solid:hover {
+  filter: brightness(1.15);
+  box-shadow:
+    0 18px 60px -10px rgba(155, 107, 255, 0.8),
+    0 0 40px rgba(124, 242, 255, 0.5);
+}
+
+/* === Background ambients === */
+.starfield {
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(2px 2px at 20% 30%, rgba(255, 255, 255, 0.7), transparent),
+    radial-gradient(1px 1px at 80% 60%, rgba(155, 107, 255, 0.6), transparent),
+    radial-gradient(1.5px 1.5px at 65% 20%, rgba(124, 242, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 35% 75%, rgba(255, 92, 209, 0.4), transparent),
+    radial-gradient(2px 2px at 90% 35%, rgba(255, 255, 255, 0.5), transparent),
+    radial-gradient(1px 1px at 10% 85%, rgba(124, 242, 255, 0.5), transparent);
+  background-size: 600px 600px;
+  pointer-events: none;
+  opacity: 0.4;
+}
+
+.grid-floor {
+  background-image:
+    linear-gradient(var(--grid) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+  background-size: 80px 80px;
+  mask-image: radial-gradient(ellipse at center, #000 0%, transparent 70%);
+}
+
+.aurora {
+  position: absolute;
+  filter: blur(90px);
+  opacity: 0.6;
+  border-radius: 50%;
+  pointer-events: none;
+  animation: drift 18s ease-in-out infinite;
+}
+
+/* === Section reveal === */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 1s cubic-bezier(0.2, 0.8, 0.2, 1), transform 1s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+.reveal.in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* === Scrollbar === */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: rgba(11, 13, 24, 0.5);
+}
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #3aa6ff, #9b6bff, #ff5cd1);
+  border-radius: 999px;
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ── Mobile GPU optimizations ──────────────────────────────────────────────
+ * blur(90px) on three large fixed blobs is the single most expensive CSS
+ * operation on mobile GPUs.  Halve the radius and opacity; visually
+ * identical at arm's length on a phone screen.
+ *
+ * backdrop-filter on every .glass panel creates a new compositing layer per
+ * element.  Reduce blur radius and drop it entirely from buttons to cut the
+ * total layer count on low-memory GPUs.
+ * ─────────────────────────────────────────────────────────────────────── */
+@media (pointer: coarse) {
+  .aurora {
+    filter: blur(45px) !important;
+    opacity: 0.4 !important;
+  }
+
+  .glass {
+    backdrop-filter: blur(8px) saturate(120%);
+    -webkit-backdrop-filter: blur(8px) saturate(120%);
+  }
+
+  .glass-strong {
+    backdrop-filter: blur(12px) saturate(150%);
+    -webkit-backdrop-filter: blur(12px) saturate(150%);
+  }
+
+  /* Buttons don't need backdrop blur — the gradient background is enough. */
+  .btn-neon {
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+}

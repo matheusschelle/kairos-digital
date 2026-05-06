@@ -1,0 +1,32 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mkdir -p \"C:/Users/Matheus/Site Kairos ANIMADO/temp_frames\")",
+      "Bash(unzip -o \"C:/Users/Matheus/Downloads/ezgif-69a14ed6c334a3d6-jpg.zip\")",
+      "Bash(python -c \"import sys; print\\(sys.version\\)\")",
+      "Bash(pdftotext \"C:/Users/Matheus/Downloads/Kairos_Digital_Redefinindo_o_Futuro_com_IA_Estratégica.pdf\" \"C:/Users/Matheus/Site Kairos ANIMADO/temp_kairos.txt\")",
+      "Bash(grep -iE \"logo|kairos.*\\\\.\\(png|jpg|webp|svg\\)$\")",
+      "Bash(python -c \"from PIL import Image; img = Image.open\\(r'C:/Users/Matheus/Site Kairos ANIMADO/temp_frames/ezgif-frame-001.jpg'\\); print\\(img.size, img.mode\\)\")",
+      "Bash(npm --version)",
+      "Bash(npm install *)",
+      "Bash(python -m pip install --upgrade pillow)",
+      "Bash(python scripts/optimize-frames.py)",
+      "Bash(npx --no-install next build)",
+      "Bash(PORT=3030 npx --no-install next dev --port 3030)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(powershell -Command \"Get-Process node -ErrorAction SilentlyContinue | Stop-Process -Force\")",
+      "Bash(rm -rf temp_frames temp_kairos.txt)",
+      "Bash(ls -la public/frames/)",
+      "Bash(npm run *)",
+      "Bash(vercel --version)",
+      "Bash(vercel --prod)",
+      "Bash(vercel link *)",
+      "Bash(vercel --prod --scope matheus-projects-ac920e37)",
+      "Bash(vercel ls *)",
+      "Bash(git init *)",
+      "Bash(git add *)",
+      "Bash(git commit -m ' *)",
+      "Bash(git config *)"
+    ]
+  }
+}

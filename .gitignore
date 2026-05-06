@@ -1,0 +1,16 @@
+node_modules/
+.next/
+out/
+build/
+dist/
+.env*
+!.env.example
+.DS_Store
+*.log
+.vercel
+.turbo
+temp_frames/
+temp_kairos.txt
+.eslintcache
+
+.vercel
